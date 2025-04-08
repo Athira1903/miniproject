@@ -1,15 +1,11 @@
-# Use official Python image
-FROM python:3.10-slim
+# Use the official PHP Apache image
+FROM php:8.2-apache
 
-# Set working directory
-WORKDIR /app
+# Copy all project files into the web root
+COPY . /var/www/html/
 
-# Copy requirements and install
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+# Enable Apache mod_rewrite (optional, for pretty URLs)
+RUN a2enmod rewrite
 
-# Copy project files
-COPY . .
-
-# Run the app
-CMD ["python", "app.py"]
+# Expose port 80 to the outside world
+EXPOSE 80
