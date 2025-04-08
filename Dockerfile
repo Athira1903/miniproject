@@ -1,17 +1,17 @@
-# Use an official Python image
+# Use official Python image
 FROM python:3.10-slim
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy dependencies
+# Copy requirements file
 COPY requirements.txt .
 
 # Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
+# Copy the project files
 COPY . .
 
-# Run the app
+# Set the default command to run your app
 CMD ["python", "src/app.py"]
