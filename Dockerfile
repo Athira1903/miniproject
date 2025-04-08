@@ -1,17 +1,15 @@
 # Use official Python image
 FROM python:3.10-slim
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy dependencies
+# Copy dependency list first and install
 COPY requirements.txt .
-
-# Install dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the app
+# Copy the entire project
 COPY . .
 
-# Run the app
+# Run your Python app (modify if your entry point is different)
 CMD ["python", "src/app.py"]
