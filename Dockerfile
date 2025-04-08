@@ -1,13 +1,11 @@
-FROM php:8.2-apache
+# Clone the GitHub repo
+git clone https://github.com/Athira1903/miniproject.git
 
-# Enable Apache modules (like rewrite)
-RUN a2enmod rewrite
+# Navigate into the project directory
+cd miniproject
 
-# Install MySQLi extension
-RUN docker-php-ext-install mysqli
+# Check the contents of the 'src' folder to make sure the Dockerfile exists
+ls src
 
-# Copy everything into Apache web root
-COPY . /var/www/html/
-
-# Set permissions (optional but good practice)
-RUN chown -R www-data:www-data /var/www/html
+# Build the Docker image using the Dockerfile inside 'src'
+docker build -f src/Dockerfile -t my-miniproject-image .
