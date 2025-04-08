@@ -1,17 +1,14 @@
-# Use Python base image
-FROM python:3.9-slim
+# Use an official Python runtime as a parent image
+FROM python:3.10-slim
 
-# Set working directory
+# Set the working directory
 WORKDIR /app
 
-# Copy everything into the container
-COPY . .
+# Copy the current directory contents into the container
+COPY . /app
 
-# Install Python dependencies
+# Install any needed packages
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Expose the Flask port
-EXPOSE 5000
-
-# Run the Flask app
-CMD ["python", "src/app.py"]
+# Run the application
+CMD ["python", "main.py"]
