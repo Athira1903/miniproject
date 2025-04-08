@@ -1,10 +1,10 @@
-# Use a minimal Python image
+# Use Python base image
 FROM python:3.9-slim
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-# Copy everything from the current directory to the container
+# Copy everything into the container
 COPY . .
 
 # Install Python dependencies
