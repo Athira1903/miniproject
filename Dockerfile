@@ -1,19 +1,18 @@
 # Use official Python image
 FROM python:3.10-slim
 
-# Set working directory in the container
+# Set working directory
 WORKDIR /app
 
-# Copy requirements.txt if it exists and install dependencies
-COPY requirements.txt ./ || true
-RUN if [ -f requirements.txt ]; then \
-        pip install --no-cache-dir -r requirements.txt ; \
-    else \
-        echo "No requirements.txt found. Skipping dependency installation."; \
-    fi
-
-# Copy the rest of the project into the container
+# Copy everything first (including requirements.txt if it exists)
 COPY . .
 
-# Set the command to run your application
+# Install dependencies if requirements.txt exists
+RUN if [ -f "requirements.txt" ]; then \
+        pip install --no-cache-dir -r requirements.txt ; \
+    else \
+        echo "No requirements.txt found. Skipping pip install." ; \
+    fi
+
+# Run the application
 CMD ["python", "app.py"]
