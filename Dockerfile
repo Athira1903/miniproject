@@ -1,12 +1,12 @@
-# Step 1: Clone the repo
+# Clone the project
 git clone https://github.com/Athira1903/miniproject.git
 
-# Step 2: Go into the project folder
+# Move into the project directory
 cd miniproject
 
-# Step 3: Confirm that Dockerfile exists and is inside src/
+# Check if Dockerfile exists in the 'src' folder
 ls src
-# You should see a file named Dockerfile listed here
+# You should see: Dockerfile
 
-# Step 4: Build the Docker image (corrected command)
+# Build the Docker image correctly
 docker build -f src/Dockerfile -t miniproject-image .
