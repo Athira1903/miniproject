@@ -1,12 +1,17 @@
-# Clone the project
-git clone https://github.com/Athira1903/miniproject.git
+# Use an official Python image
+FROM python:3.9-slim
 
-# Move into the project directory
-cd miniproject
+# Set the working directory in the container
+WORKDIR /app
 
-# Check if Dockerfile exists in the 'src' folder
-ls src
-# You should see: Dockerfile
+# Copy all files from the current directory to /app in the container
+COPY . .
 
-# Build the Docker image correctly
-docker build -f src/Dockerfile -t miniproject-image .
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Expose the port Flask will run on
+EXPOSE 5000
+
+# Run the Flask app
+CMD ["python", "src/app.py"]
