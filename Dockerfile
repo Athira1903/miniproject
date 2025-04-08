@@ -4,15 +4,12 @@ FROM python:3.10-slim
 # Set working directory
 WORKDIR /app
 
-# Copy everything first (including requirements.txt if it exists)
+# Copy requirements and install
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy project files
 COPY . .
 
-# Install dependencies if requirements.txt exists
-RUN if [ -f "requirements.txt" ]; then \
-        pip install --no-cache-dir -r requirements.txt ; \
-    else \
-        echo "No requirements.txt found. Skipping pip install." ; \
-    fi
-
-# Run the application
+# Run the app
 CMD ["python", "app.py"]
